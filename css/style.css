@@ -1,0 +1,17 @@
+body {
+    text-align: center;
+    vertical-align: center;
+    padding: 0;
+    margin: 0;
+    color: #FFFFFF;
+}
+#street, #cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+#map{
+    display: none;
+}
