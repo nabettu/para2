@@ -11,8 +11,8 @@ $(function() {
                 alert('画像ファイルを選んでください');
                 return;
             }
-            if (1024000 < file.size) {
-                alert('画像が大きすぎます(1MBまで)');
+            if (10240000 < file.size) {
+                alert('画像が大きすぎます(10MBまで)');
                 return;
             };
             var reader = new FileReader();
