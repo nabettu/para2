@@ -28,19 +28,28 @@ $(function() {
 }());
 
 function fileset(srcs) {
+    var i = 0;
+
     var images = srcs.map(function(src) {
+        i++;
         var image = new Image();
         image.src = src;
+        $(image).on('load', onload);
         return image;
     });
 
-    // 画像が全ロードされるまで待つ
-    createGIF({
-        images: images
-    }, function(dataURL) {
-        $("#image").attr('src', dataURL);
-    });
-
+    function onload() {
+        i--;
+        if (i) {
+            return;
+        }
+        // 画像が全ロードされるまで待つ
+        createGIF({
+            images: images
+        }, function(dataURL) {
+            $("#image").attr('src', dataURL);
+        });
+    }
 }
 // Array{DOM Image} -> callback(dataURL)
 function createGIF(args, callback) {
@@ -48,15 +57,27 @@ function createGIF(args, callback) {
 
     //サイズを最小のやつにする
 
+    console.log(images);
+    console.log(images[0].width);
+
+
     var option = {
         delay: args.delay || 100, //最速は50
         repeat: args.repeat || 0, // default: auto loop
-        width: args.width || images[0].width,
-        height: args.height || images[0].height
     };
 
     var canvas = document.createElement("canvas");
     var context = canvas.getContext('2d');
+
+    if (images[0].width < 1000) {
+        option.width = images[0].width;
+        option.height = images[0].height;
+    } else {
+        option.width = 1000;
+        option.height = images[0].height * 1000 / images[0].width;
+    };
+
+    console.log(canvas);
 
     canvas.width = option.width;
     canvas.height = option.height;
