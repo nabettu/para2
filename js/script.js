@@ -1,8 +1,55 @@
+$(function() {
+
+    var srcs = [];
+    $(".inputfile").on("change", function(evt) {
+            $(this).hide();
+
+            var files = evt.target.files;
+            if (files.length == 0) return;
+            var file = files[0];
+            if (!file.type.match(/image/)) {
+                alert('画像ファイルを選んでください');
+                return;
+            }
+            if (1024000 < file.size) {
+                alert('画像が大きすぎます(1MBまで)');
+                return;
+            };
+            var reader = new FileReader();
+
+            reader.onload = function(evt) {
+                srcs.push(reader.result);
+                console.log(srcs.length);
+                if (srcs.length == 2) fileset(srcs);
+            }
+            reader.readAsDataURL(file);
+        })
+        //    fileset()
+}());
+
+function fileset(srcs) {
+    var images = srcs.map(function(src) {
+        var image = new Image();
+        image.src = src;
+        return image;
+    });
+
+    // 画像が全ロードされるまで待つ
+    createGIF({
+        images: images
+    }, function(dataURL) {
+        $("#image").attr('src', dataURL);
+    });
+
+}
 // Array{DOM Image} -> callback(dataURL)
 function createGIF(args, callback) {
     var images = args.images || [];
+
+    //サイズを最小のやつにする
+
     var option = {
-        delay: args.delay || 200,
+        delay: args.delay || 100, //最速は50
         repeat: args.repeat || 0, // default: auto loop
         width: args.width || 400,
         height: args.height || 400
@@ -67,22 +114,3 @@ function encode64(input) {
     }
     return output;
 }
-
-$(function() {
-    var srcs = ['img/1.jpg', 'img/2.jpg'];
-
-    var images = srcs.map(function(src) {
-        var image = new Image();
-        image.src = src;
-        return image;
-    });
-
-    // 画像が全ロードされるまで待つ
-    window.onload = function() {
-        createGIF({
-            images: images
-        }, function(dataURL) {
-            $("#image").attr('src', dataURL);
-        });
-    };
-}());
