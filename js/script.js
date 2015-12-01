@@ -51,8 +51,8 @@ function createGIF(args, callback) {
     var option = {
         delay: args.delay || 100, //最速は50
         repeat: args.repeat || 0, // default: auto loop
-        width: args.width || 400,
-        height: args.height || 400
+        width: args.width || images[0].width,
+        height: args.height || images[0].height
     };
 
     var canvas = document.createElement("canvas");
