@@ -1,8 +1,10 @@
+if (($(window).width() / 650) < 1)$("article").css("zoom", ($(window).width() / 650));
+
 $(function() {
 
     var srcs = [];
     $(".inputfile").on("change", function(evt) {
-            $(this).hide();
+
 
             var files = evt.target.files;
             if (files.length == 0) return;
@@ -18,14 +20,15 @@ $(function() {
             var reader = new FileReader();
 
             var num = this.id.replace("file", "");
-            console.log(num);
+
+            $("#inputBtn" + num).hide();
 
             reader.onload = function(evt) {
                 srcs.push(reader.result);
                 if (srcs.length == 2) fileset(srcs);
 
-                console.log(num);
                 $("#input" + num)[0].src = reader.result;
+                $("#input" + num).fadeIn(200);
             }
             reader.readAsDataURL(file);
         })
@@ -52,8 +55,8 @@ function fileset(srcs) {
         createGIF({
             images: images
         }, function(dataURL) {
-            $(".imgArea").delay(1000).addClass("loaded").queue(function() {
-                $(".imgArea").hide();
+            $(".inputArea").delay(1000).addClass("loaded").queue(function() {
+                $(".inputArea").hide();
                 $("#output").delay(1000).fadeIn(200).attr('src', dataURL);
             });
         });

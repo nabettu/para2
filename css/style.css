@@ -1,22 +1,54 @@
 body {
+    position: relative;
     text-align: center;
     vertical-align: center;
+    height:100%;
     padding: 0;
     margin: 0 auto;
     color: #FFFFFF;
     font-size: 0;
-    width:650px;
+}
+h1 {
+    font-size: 30px;
+    color: #000;
+    padding-top: 50px;
+    margin-bottom: 50px;
+}
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.inputBtn {
+    display: inline-block;
+    border: none;
+    font-size: 50px;
+    font-weight: normal;
+    line-height: 290px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: #46b8da;
+    color: #fff;
+    text-align: center;
 }
 input {
-    padding: 15px 40px;
-    font-size: 30px;
-    background-color: #000;
-    color: #fff;
-    border-style: none;
+    position: absolute;
+    opacity: 0;
+    filter: progid: DXImageTransform.Microsoft.Alpha(opacity=0);
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-size: 100px;
+    cursor: pointer;
 }
-.imgArea {
+.inputArea {
     position: relative;
-    margin: 20% auto;
+    margin: 30px auto;
     width: 650px;
     animation-duration: 1s;
     animation-iteration-count: 1;
@@ -24,25 +56,34 @@ input {
     animation-fill-mode: forwards;
     transform-origin: 50% 50%;
 }
-.imgArea .inputImg {
+.inputBtn {
     position: relative;
     width: 300px;
+    height: 300px;
+    box-sizing: border-box;
+}
+.inputImg {
+    display: inline-block;
+    display: none;
+    position: relative;
+    width: 300px;
+    border-radius: 5px;
     animation-duration: 1s;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 }
-#input0 {
-    left: 0;
+#input0, #inputBtn0 {
+    float: left;
 }
-#input1 {
-    right: 0;
+#input1, #inputBtn1 {
+    float: right;
 }
 #output {
-    margin: 20% auto;
+    margin: 30px auto;
     display: none;
 }
-.loaded{
+.loaded {
     animation-name: arearotate;
 }
 .loaded #input0 {
@@ -73,4 +114,20 @@ input {
         display: none;
         transform: rotate(720deg);
     }
+}
+.shareArea {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -100px;
+    width: 200px;
+    transform: scale(1.5);
+    overflow: hidden;
+    font-size: 15px;
+    color: #000;
+}
+.fb-like {
+    position: relative;
+    top: -6px;
+    margin-right: 10px;
 }
