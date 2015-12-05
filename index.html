@@ -13,10 +13,18 @@
 </head>
 
 <body>
-    <input class="inputfile" id="file0" type="file" name="img1" accept="image/*">
-    <input class="inputfile" id="file1" type="file" name="img2" accept="image/*">
+    <div class="inputArea">
+        <input class="inputfile" id="file0" type="file" name="img1" accept="image/*" value="画像1">
+        <input class="inputfile" id="file1" type="file" name="img2" accept="image/*" value="画像2">
+    </div>
 
-    <img id="image" />
+    <div class="imgArea">
+        <img class="inputImg" id="input0" />
+        <img class="inputImg" id="input1" />
+    </div>
+
+    <img id="output" />
+
     <script src="js/script.js"></script>
 </body>
 

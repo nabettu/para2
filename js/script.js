@@ -17,10 +17,15 @@ $(function() {
             };
             var reader = new FileReader();
 
+            var num = this.id.replace("file", "");
+            console.log(num);
+
             reader.onload = function(evt) {
                 srcs.push(reader.result);
-                console.log(srcs.length);
                 if (srcs.length == 2) fileset(srcs);
+
+                console.log(num);
+                $("#input" + num)[0].src = reader.result;
             }
             reader.readAsDataURL(file);
         })
@@ -47,19 +52,16 @@ function fileset(srcs) {
         createGIF({
             images: images
         }, function(dataURL) {
-            $("#image").attr('src', dataURL);
+            $(".imgArea").delay(1000).addClass("loaded").queue(function() {
+                $(".imgArea").hide();
+                $("#output").delay(1000).fadeIn(200).attr('src', dataURL);
+            });
         });
-    }
+    };
 }
 // Array{DOM Image} -> callback(dataURL)
 function createGIF(args, callback) {
     var images = args.images || [];
-
-    //サイズを最小のやつにする
-
-    console.log(images);
-    console.log(images[0].width);
-
 
     var option = {
         delay: args.delay || 100, //最速は50
@@ -69,6 +71,7 @@ function createGIF(args, callback) {
     var canvas = document.createElement("canvas");
     var context = canvas.getContext('2d');
 
+    //MAXWidthを1000pxに
     if (images[0].width < 1000) {
         option.width = images[0].width;
         option.height = images[0].height;
@@ -76,8 +79,6 @@ function createGIF(args, callback) {
         option.width = 1000;
         option.height = images[0].height * 1000 / images[0].width;
     };
-
-    console.log(canvas);
 
     canvas.width = option.width;
     canvas.height = option.height;
