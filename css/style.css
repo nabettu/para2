@@ -88,8 +88,9 @@ input {
     float: right;
 }
 #output {
-    margin: 30px auto;
     display: none;
+    margin: 30px auto;
+    border-radius: 5px;
 }
 .loaded {
     animation-name: arearotate;
