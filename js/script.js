@@ -2,6 +2,14 @@ if (($(window).width() / 650) < 1)$("article").css("zoom", ($(window).width() / 
 
 $(function() {
 
+    $("#modalBtn").on("click",function(){
+        $(".tweetModal").fadeIn(1000);
+    });
+
+    $("#modalClose").on("click",function(){
+        $(".tweetModal").fadeOut(1000);
+    });
+
     var srcs = [];
     $(".inputfile").on("change", function(evt) {
 
@@ -56,7 +64,9 @@ function fileset(srcs) {
         }, function(dataURL) {
             $(".inputArea").delay(1000).addClass("loaded").queue(function() {
                 $(".inputArea").hide();
-                $("#output").delay(1000).fadeIn(200).attr('src', dataURL);
+                $(".outputArea").delay(1000).fadeIn(200);
+                $("#output").attr('src', dataURL);
+                $("#postImageFile").attr('value', dataURL);
             });
         });
     };

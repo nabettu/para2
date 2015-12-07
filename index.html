@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
+
+<head prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, maximum-scale=1.0,initial-scale=0.8, user-scalable=no">
     <title>GIF画像ジェネレータ</title>
@@ -43,10 +44,28 @@
             <img class="inputImg" id="input1" />
         </div>
 
-        <img id="output" />
+        <div class="outputArea">
+            <img id="output" />
+            <a id="modalBtn" href="#modal">画像をツイート</a>
+            <a id="retryBtn" href="/">別の画像で作る</a>
+        </div>
     </article>
 
+    <div class="tweetModal">
+        <div class="tweetModalWrapper">
+            <h2>つぶやく内容</h2>
+            <a id="modalClose" href="#close">×</a>
+            <form name="imgPostForm" action="http://tk2-223-21135.vs.sakura.ne.jp/templa/?appid=123" method="post" enctype="multipart/form-data">
+                <input id="postImageFile" type="hidden" name="image" value="画像のurlが入る">
+                <textarea name="text" id="postText" cols=40 rows=3>【GIF画像ジェネレータ】 画像を２枚アップロードするとループGIFが作れます http://nabettu.github.io/para2/</textarea>
+                <input id="postBtn" type="submit" value="アプリを認証してつぶやく"/>
+            </form>
+            <p>※アプリの認証画面へ遷移します</p>
+        </div>
+    </div>
+
     <div class="shareArea">
+        <p>このサイトをシェアする</p>
         <div class="fb-like" data-href="http://nabettu.github.io/para2/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
         <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://nabettu.github.io/para2/" data-text="【GIF画像ジェネレータ】 画像を２枚アップロードするとループGIFが作れます #GIF" data-count="none">Tweet</a>
     </div>

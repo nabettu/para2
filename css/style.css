@@ -1,4 +1,4 @@
-html,body {
+html, body {
     position: relative;
     text-align: center;
     vertical-align: center;
@@ -10,12 +10,11 @@ html,body {
     width: 100%;
     padding: 0;
     margin: 0 auto;
-    color: #FFFFFF;
+    color: #333;
     font-size: 0;
 }
 h1 {
     font-size: 30px;
-    color: #000;
     padding-top: 50px;
     margin: 0 auto 50px;
 }
@@ -42,7 +41,7 @@ img {
     color: #fff;
     text-align: center;
 }
-input {
+.inputArea input {
     position: absolute;
     opacity: 0;
     filter: progid: DXImageTransform.Microsoft.Alpha(opacity=0);
@@ -58,6 +57,10 @@ input {
     position: relative;
     margin: 30px auto;
     width: 650px;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-fill-mode: forwards;
     animation-duration: 1s;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
@@ -80,6 +83,10 @@ input {
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-fill-mode: forwards;
 }
 #input0, #inputBtn0 {
     float: left;
@@ -87,18 +94,36 @@ input {
 #input1, #inputBtn1 {
     float: right;
 }
-#output {
+.outputArea {
     display: none;
+    font-size: 20px;
+}
+#output {
+    display: block;
     margin: 30px auto;
     border-radius: 5px;
 }
+.outputArea a, #postBtn {
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 10px;
+    text-decoration: none;
+    background-color: #46b8da;
+    color: #fff;
+    text-align: center;
+}
 .loaded {
+    -webkit-animation-name: arearotate;
     animation-name: arearotate;
 }
 .loaded #input0 {
+    -webkit-animation-name: toleft;
     animation-name: toleft;
 }
 .loaded #input1 {
+    -webkit-animation-name: toright;
     animation-name: toright;
 }
 @keyframes toright {
@@ -124,6 +149,76 @@ input {
         transform: rotate(720deg);
     }
 }
+@-webkit-keyframes toright {
+    from {
+        right: 0px;
+    }
+    to {
+        right: 200px;
+    }
+}
+@-webkit-keyframes toleft {
+    from {
+        left: 0px;
+    }
+    to {
+        left: 200px;
+    }
+}
+@-webkit-keyframes arearotate {
+    to {
+        opacity: 0;
+        display: none;
+        -webkit-transform: rotate(720deg);
+    }
+}
+.tweetModal {
+    display: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, .7);
+}
+.tweetModalWrapper {
+    display: block;
+    position: absolute;
+    height: 320px;
+    width: 320px;
+    top: 50%;
+    left: 50%;
+    background-color: #fff;
+    margin-top: -160px;
+    margin-left: -160px;
+    padding: 20px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    border-radius: 10px;
+}
+.tweetModalWrapper h2 {
+    margin: 0;
+}
+#postText {
+    font-size: 16px;
+    width: 90%;
+    height: 140px;
+    margin: 10px auto 5px;
+}
+#postBtn {
+    width: 80%;
+    padding: 5px;
+    font-size: 20px;
+}
+#modalClose {
+    position: absolute;
+    top: 2px;
+    right: 14px;
+    color: #000;
+    font-size: 20px;
+    text-decoration: none;
+}
 .shareArea {
     position: absolute;
     bottom: 20px;
@@ -133,7 +228,6 @@ input {
     transform: scale(1.5);
     overflow: hidden;
     font-size: 15px;
-    color: #000;
 }
 .fb-like {
     position: relative;
