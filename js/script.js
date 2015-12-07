@@ -5,7 +5,6 @@ $(function() {
     var srcs = [];
     $(".inputfile").on("change", function(evt) {
 
-
             var files = evt.target.files;
             if (files.length == 0) return;
             var file = files[0];

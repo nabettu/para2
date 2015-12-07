@@ -1,4 +1,4 @@
-body {
+html,body {
     position: relative;
     text-align: center;
     vertical-align: center;
@@ -17,7 +17,7 @@ h1 {
     font-size: 30px;
     color: #000;
     padding-top: 50px;
-    margin-bottom: 50px;
+    margin: 0 auto 50px;
 }
 img {
     max-width: 100%;
