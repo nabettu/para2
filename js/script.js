@@ -3,11 +3,11 @@ if (($(window).width() / 650) < 1)$("article").css("zoom", ($(window).width() / 
 $(function() {
 
     $("#modalBtn").on("click",function(){
-        $(".tweetModal").fadeIn(1000);
+        $(".tweetModal").fadeIn(500);
     });
 
     $("#modalClose").on("click",function(){
-        $(".tweetModal").fadeOut(1000);
+        $(".tweetModal").fadeOut(500);
     });
 
     var srcs = [];
