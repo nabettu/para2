@@ -222,10 +222,7 @@ img {
     text-decoration: none;
 }
 .shareArea {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    margin-left: -100px;
+    margin: 50px auto 0;
     width: 200px;
     transform: scale(1.5);
     overflow: hidden;
